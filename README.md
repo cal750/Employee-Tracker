@@ -13,7 +13,7 @@
   6. [Github](#Questions)
   
   ## Installation
-  use npm i and npm i inquirer, as well as *** and ***
+  use 'npm i' and 'npm i inquirer', as well as 'npm i express' and 'npm i mysql2'
   
   ## Usage
   through the inbuilt command line

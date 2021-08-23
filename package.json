@@ -1,0 +1,24 @@
+{
+  "name": "employee-tracker",
+  "version": "1.0.0",
+  "description": "An application that will let users see and interact with their' workers",
+  "main": "index.js",
+  "scripts": {
+    "test": "goghurt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cal750/Employee-Tracker.git"
+  },
+  "author": "Seth Nightingale",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cal750/Employee-Tracker/issues"
+  },
+  "homepage": "https://github.com/cal750/Employee-Tracker#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "inquirer": "^8.1.2",
+    "mysql2": "^2.3.0"
+  }
+}
