@@ -17,6 +17,8 @@ VALUES (4, "invoice");
 INSERT INTO department (id, depname)
 VALUES (5, "Customer Experience");
 
+
+
 --- roles for employees ---
 
 INSERT INTO role (id, jobname, salary, department_id)
@@ -85,7 +87,7 @@ INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
 VALUES (11, "Ann", "Sears", 4, 13);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES (12, "Sarah", "Goode", 2, null);
+VALUES (12, "Sarah", "Goode", 2, 13);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
 VALUES (13, "Jonathan", "Corwin", 1, null);
