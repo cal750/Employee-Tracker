@@ -4,6 +4,7 @@ const inquirer = require("inquirer");
 const table = require("console.table");
 const promisemysql = require("promise-mysql");
 const { Action } = require("rxjs/internal/scheduler/Action");
+const { ADDRGETNETWORKPARAMS } = require("dns");
 
 //setting up the connection port and mysql settings
 const connection = {
@@ -41,15 +42,41 @@ function menu(){
             "Add Employee",
             "Add Department",
             "Add Role",
-            "View Salaries",
+            "View Budget",
         ]
     })
     .then((answer) => {
         //looked up the switch function, not really sure how it works
         switch (answer.action) {
-            case "View all Employees";
-            viewallemp();
-            break;
+            case "View all Employees":
+                viewAllEmp();
+                break;
+
+            case "View Departments":
+                viewDep();
+                break;
+
+            case "View Managers":
+                viewMan();
+                break;
+
+            case "Add Employee":
+                addEmp();
+                break;
+
+            case "Add Department":
+                addDep();
+                break;
+
+            case "Add Role":
+                addRole();
+                break;
+
+            case "View Budget":
+                viewBud();
+                break;
         }
-    })
+    });
 }
+
+// starting code to pull and push the repository
