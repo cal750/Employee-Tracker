@@ -1,7 +1,5 @@
 USE employees_DB;
 
---- adding in departmental roles ---
-
 INSERT INTO department (id, depname)
 VALUES (1, "Store Leaders");
 
@@ -16,10 +14,6 @@ VALUES (4, "invoice");
 
 INSERT INTO department (id, depname)
 VALUES (5, "Customer Experience");
-
-
-
---- roles for employees ---
 
 INSERT INTO role (id, jobname, salary, department_id)
 VALUES (1, "Store Manager", 120000, 1);
@@ -50,8 +44,6 @@ VALUES (9, "Customer Experience Manager", 75000, 5);
 
 INSERT INTO role (id, jobname, salary, department_id)
 VALUES (10, "Customer Experience Worker", 50000, 5);
-
---- individual employees ---
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
 VALUES (1, "Cotton", "Mather", 10, 3);
@@ -90,4 +82,4 @@ INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
 VALUES (12, "Sarah", "Goode", 2, 13);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES (13, "Jonathan", "Corwin", 1, null);
+VALUES (13, "Jonathan", "Corwin", 1, 12);

@@ -1,33 +1,31 @@
---- creating database for the application to retrieve data from ---
+DROP DATABASE IF EXISTS employees_DB;
+
 CREATE DATABASE employees_DB;
 
 USE employees_DB;
 
---- departments ---
+DROP TABLE IF EXISTS department;
 CREATE TABLE department (
-    id INT NOT NULL AUTO_INCREMENT,
-    depname VARCHAR(30) NOT NULL,
-    PRIMARY KEY (id)
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    depname VARCHAR(30) NOT NULL
 );
 
---- jobs ---
-CREATE TABLE job (
-    id INT NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS role;
+CREATE TABLE role (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     jobname VARCHAR(30) NOT NULL,
     salary INT NOT NULL,
     department_id INT NOT NULL,
-    PRIMARY KEY (id),
     FOREIGN KEY (department_id) REFERENCES department(id)
 );
 
---- employees ---
+DROP TABLE IF EXISTS employee;
 CREATE TABLE employee (
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     role_id INT NOT NULL,
     manager_id INT,
-    PRIMARY KEY (id),
     FOREIGN KEY (role_id) REFERENCES role(id),
     FOREIGN KEY (manager_id) REFERENCES employee(id)
 );
