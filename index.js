@@ -82,8 +82,8 @@ function menu(){
 function viewAllEmp(){
 
     // Query to view all employees
-    let query = "SELECT employee.id ORDER BY id ASC";
-    //e.id, e.first_name, e.last_name, role.title, department.name AS department, role.salary, concat(m.first_name, ' ' ,  m.last_name) AS manager FROM employee e LEFT JOIN employee m ON e.manager_id = m.id INNER JOIN role ON e.role_id = role.id INNER JOIN department ON role.department_id = department.id ORDER BY ID ASC";
+    let query = "e.id, e.first_name, e.last_name, role.title, department.depname AS department, role.salary, concat(m.first_name, ' ' ,  m.last_name) AS manager FROM employee e LEFT JOIN employee m ON e.manager_id = m.id INNER JOIN role ON e.role_id = role.id INNER JOIN department ON role.department_id = department.id ORDER BY ID ASC";
+    
 
     connection.query(query, function(err, res) {
         if(err) return err;
@@ -108,7 +108,7 @@ function viewDep(){
     }).then(function(value){
         deptQuery = value;
         for (i=0; i < value.length; i++){
-            deptArr.push(value[i].name);
+            deptArr.push(value[i].depname);
             
         }
     }).then(() => {
@@ -123,7 +123,7 @@ function viewDep(){
         .then((answer) => {
 
             // Query all employees depending on selected department
-            const query = `SELECT e.id AS ID, e.first_name AS 'First Name', e.last_name AS 'Last Name', role.title AS Title, department.name AS Department, role.salary AS Salary, concat(m.first_name, ' ' ,  m.last_name) AS Manager FROM employee e LEFT JOIN employee m ON e.manager_id = m.id INNER JOIN role ON e.role_id = role.id INNER JOIN department ON role.department_id = department.id WHERE department.name = '${answer.department}' ORDER BY ID ASC`;
+            const query = `SELECT e.id AS ID, e.first_name AS 'First Name', e.last_name AS 'Last Name', role.title AS Title, department.depname AS Department, role.salary AS Salary, concat(m.first_name, ' ' ,  m.last_name) AS Manager FROM employee e LEFT JOIN employee m ON e.manager_id = m.id INNER JOIN role ON e.role_id = role.id INNER JOIN department ON role.department_id = department.id WHERE department.depname = '${answer.department}' ORDER BY ID ASC`;
             connection.query(query, (err, res) => {
                 if(err) return err;
                 
@@ -163,7 +163,7 @@ function viewMan(){
         .then((answer) => {
 
 
-            const query = `SELECT e.id AS ID, e.first_name AS 'First Name', e.last_name AS 'Last Name', role.title AS Title, department.name AS Department, role.salary AS Salary, concat(m.first_name, ' ' ,  m.last_name) AS Manager FROM employee e LEFT JOIN employee m ON e.manager_id = m.id INNER JOIN role ON e.role_id = role.id INNER JOIN department ON role.department_id = department.id WHERE role.title = '${answer.role}' ORDER BY ID ASC`;
+            const query = `SELECT e.id AS ID, e.first_name AS 'First Name', e.last_name AS 'Last Name', role.title AS Title, department.depname AS Department, role.salary AS Salary, concat(m.first_name, ' ' ,  m.last_name) AS Manager FROM employee e LEFT JOIN employee m ON e.manager_id = m.id INNER JOIN role ON e.role_id = role.id INNER JOIN department ON role.department_id = department.id WHERE role.title = '${answer.role}' ORDER BY ID ASC`;
             connection.query(query, (err, res) => {
                 if(err) return err;
 
@@ -294,7 +294,7 @@ function addDep(){
         }).then((answer) => {
                 
             // add department to the table
-            connection.query(`INSERT INTO department (name)VALUES ("${answer.deptName}");`, (err, res) => {
+            connection.query(`INSERT INTO department (depname)VALUES ("${answer.deptName}");`, (err, res) => {
                 if(err) return err;
                 console.log("\n DEPARTMENT ADDED...\n ");
                 menu();
@@ -322,7 +322,7 @@ function addJob(){
         
         // Place all departments in array
         for (i=0; i < departments.length; i++){
-            departmentArr.push(departments[i].name);
+            departmentArr.push(departments[i].depname);
         }
 
         return departments;
@@ -354,7 +354,7 @@ function addJob(){
 
                 // get id of department selected
                 for (i=0; i < departments.length; i++){
-                    if (answer.dept == departments[i].name){
+                    if (answer.dept == departments[i].depname){
                         deptID = departments[i].id;
                     }
                 }
@@ -381,8 +381,8 @@ function viewBudget(){
     .then((conn) => {
         return  Promise.all([
 
-            conn.query("SELECT department.name AS department, role.salary FROM employee e LEFT JOIN employee m ON e.manager_id = m.id INNER JOIN role ON e.role_id = role.id INNER JOIN department ON role.department_id = department.id ORDER BY department ASC"),
-            conn.query('SELECT name FROM department ORDER BY name ASC')
+            conn.query("SELECT department.depname AS department, role.salary FROM employee e LEFT JOIN employee m ON e.manager_id = m.id INNER JOIN role ON e.role_id = role.id INNER JOIN department ON role.department_id = department.id ORDER BY department ASC"),
+            conn.query('SELECT depname FROM department ORDER BY depname ASC')
         ]);
     }).then(([deptSalaies, departments]) => {
         
@@ -394,14 +394,14 @@ function viewBudget(){
 
             // add all salaries together
             for (i=0; i < deptSalaies.length; i++){
-                if (departments[d].name == deptSalaies[i].department){
+                if (departments[d].depname == deptSalaies[i].department){
                     departmentBudget += deptSalaies[i].salary;
                 }
             }
 
             // create new property with budgets
             department = {
-                Department: departments[d].name,
+                Department: departments[d].depname,
                 Budget: departmentBudget
             }
             deptBudgetArr.push(department);
