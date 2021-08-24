@@ -13,7 +13,7 @@
   6. [Github](#Questions)
   
   ## Installation
-  use 'npm i' and 'npm i inquirer', as well as 'npm i express' and 'npm i mysql2'
+  use 'npm i' and 'npm i inquirer', as well as 'npm i express' and 'npm i mysql2' as well as 'npm install console.table' 'npm install promise-mysql2'
   
   ## Usage
   through the inbuilt command line

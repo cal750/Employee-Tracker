@@ -17,8 +17,13 @@
   },
   "homepage": "https://github.com/cal750/Employee-Tracker#readme",
   "dependencies": {
+    "console.table": "^0.10.0",
+    "dns": "^0.2.2",
     "express": "^4.17.1",
     "inquirer": "^8.1.2",
-    "mysql2": "^2.3.0"
+    "mysql2": "^2.3.0",
+    "promise": "^8.1.0",
+    "promise-mysql2": "^1.0.0",
+    "rxjs": "^7.3.0"
   }
 }

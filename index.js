@@ -1,25 +1,23 @@
 // adding in required constants
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const inquirer = require("inquirer");
 const table = require("console.table");
-const promisemysql = require("promise-mysql");
-const { Action } = require("rxjs/internal/scheduler/Action");
-const { ADDRGETNETWORKPARAMS } = require("dns");
+const promisemysql = require("promise-mysql2");
 
 //setting up the connection port and mysql settings
-const connection = {
+const connectionPort = {
     host: "localhost",
-    port: 3001,
+    port: 3306,
     user: "root",
-    password: "password",
-    database: "employee_DB"
+    password: "avacado000",
+    database: "employees_DB"
 }
 
 //extend connection to mysql
-const connect = mysql.createConnection(connection);
+const connection = mysql.createConnection(connectionPort);
 
 //Start up connection
-connect.connect((err) => {
+connection.connect((err) => {
     if (err) throw err;
 
     //Starts the software with a nice cheery gesture
@@ -84,7 +82,8 @@ function menu(){
 function viewAllEmp(){
 
     // Query to view all employees
-    let query = "SELECT e.id, e.first_name, e.last_name, role.title, department.name AS department, role.salary, concat(m.first_name, ' ' ,  m.last_name) AS manager FROM employee e LEFT JOIN employee m ON e.manager_id = m.id INNER JOIN role ON e.role_id = role.id INNER JOIN department ON role.department_id = department.id ORDER BY ID ASC";
+    let query = "SELECT employee.id ORDER BY id ASC";
+    //e.id, e.first_name, e.last_name, role.title, department.name AS department, role.salary, concat(m.first_name, ' ' ,  m.last_name) AS manager FROM employee e LEFT JOIN employee m ON e.manager_id = m.id INNER JOIN role ON e.role_id = role.id INNER JOIN department ON role.department_id = department.id ORDER BY ID ASC";
 
     connection.query(query, function(err, res) {
         if(err) return err;
@@ -102,10 +101,10 @@ function viewDep(){
     let deptArr = [];
 
     // Create new connection using promise-sql
-    promisemysql.createConnection(connectionProperties
+    promisemysql.createConnection(connectionPort
     ).then((conn) => {
 
-        return conn.query('SELECT name FROM department');
+        return conn.query('SELECT depname FROM department');
     }).then(function(value){
         deptQuery = value;
         for (i=0; i < value.length; i++){
@@ -144,7 +143,7 @@ function viewMan(){
 
     let roleArr = [];
 
-    promisemysql.createConnection(connectionProperties)
+    promisemysql.createConnection(connectionPort)
     .then((conn) => {
         return conn.query('SELECT title FROM role');
     }).then(function(roles){
@@ -186,7 +185,7 @@ function addEmp(){
     let managerArr = [];
 
     // Create connection using promise-sql
-    promisemysql.createConnection(connectionProperties
+    promisemysql.createConnection(connectionPort
     ).then((conn) => {
         return Promise.all([
             conn.query('SELECT id, title FROM role ORDER BY title ASC'), 
@@ -313,7 +312,7 @@ function addJob(){
     let departmentArr = [];
 
     // Create connection using promise-sql
-    promisemysql.createConnection(connectionProperties)
+    promisemysql.createConnection(connectionPort)
     .then((conn) => {
 
         // Query all departments
@@ -378,7 +377,7 @@ function addJob(){
 
 function viewBudget(){
 
-    promisemysql.createConnection(connectionProperties)
+    promisemysql.createConnection(connectionPort)
     .then((conn) => {
         return  Promise.all([
 
