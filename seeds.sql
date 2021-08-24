@@ -45,41 +45,42 @@ VALUES (9, "Customer Experience Manager", 75000, 5);
 INSERT INTO role (id, jobname, salary, department_id)
 VALUES (10, "Customer Experience Worker", 50000, 5);
 
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES (1, "Cotton", "Mather", 10, 3);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES (2, "Deodat", "Lawson", 10, 3);
+VALUES (1, "Jonathan", "Corwin", 1, null);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES (3, "Edward", "Bishop", 9, 13);
+VALUES (2, "Sarah", "Goode", 2, 1);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES (4, "Giles", "Corey", 8, 5);
+VALUES (3, "James", "Bayley", 3, 2);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES (5, "James", "Bayley", 3, 12);
+VALUES (4, "Edward", "Bishop", 9, 1);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES (6, "James", "Russel", 7, 8);
+VALUES (5, "Giles", "Corey", 8, 3);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES (7, "John", "Hathorne", 7, 8);
+VALUES (6, "Ann", "Sears", 4, 1);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES (8, "John", "Proctor", 6, 13);
+VALUES (7, "John", "Proctor", 6, 1);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES (9, "Alice", "Young", 5, 11);
+VALUES (8, "John", "Hathorne", 7, 7);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES (10, "Samuel", "Paris", 5, 11);
+VALUES (9, "Alice", "Young", 5, 6);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES (11, "Ann", "Sears", 4, 13);
+VALUES (10, "Samuel", "Paris", 5, 6);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES (12, "Sarah", "Goode", 2, 13);
+VALUES (11, "James", "Russel", 7, 7);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-VALUES (13, "Jonathan", "Corwin", 1, 12);
+VALUES (12, "Deodat", "Lawson", 10, 4);
+
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
+VALUES (13, "Cotton", "Mather", 10, 4);
